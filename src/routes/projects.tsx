@@ -1,0 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProjectCard } from "@/components/clientdesk/ProjectCard";
+import { loadProjects } from "@/lib/data";
+export const Route = createFileRoute("/projects")({ component: ProjectsPage });
+function ProjectsPage() { const projects = loadProjects(); return <main className="min-h-screen bg-background p-5 sm:p-10"><div className="mx-auto max-w-6xl"><a href="/" className="text-sm font-bold text-primary">← Back to overview</a><div className="mt-8 flex items-end justify-between"><div><p className="text-sm font-semibold text-primary">Workspace</p><h1 className="mt-1 text-3xl font-bold">All projects</h1><p className="mt-2 text-sm text-muted-foreground">A clear view of every engagement.</p></div><span className="rounded-full bg-white px-3 py-1.5 text-sm font-bold shadow-sm">{projects.length} projects</span></div><div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">{projects.map(project => <ProjectCard key={project.id} project={project}/>)}</div></div></main>; }
